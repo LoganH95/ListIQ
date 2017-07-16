@@ -1,0 +1,34 @@
+<layouts>
+    <layout id="LoginLayout">
+        <bitmap id="gcm" filename="../images/gcm.png" x="center" y="0" dithering="none" >
+            <palette>
+            	<color>000000</color>
+                <color>555555</color>
+                <color>AAAAAA</color>                
+                <color>00AAFF</color>
+            </palette>
+        </bitmap>    
+        <label x="center" y="65" font="Gfx.FONT_SMALL" justification="Gfx.TEXT_JUSTIFY_CENTER" text="@Strings.goToPhone" />
+        <label x="center" y="85" font="Gfx.FONT_SMALL" justification="Gfx.TEXT_JUSTIFY_CENTER" text="@Strings.connectString3" />
+    </layout>
+    
+    <layout id="Gcm">
+        <bitmap id="gcm" filename="../images/gcm.png" x="center" y="0" dithering="none" >
+            <palette>
+            	<color>000000</color>
+                <color>555555</color>
+                <color>AAAAAA</color>                
+                <color>00AAFF</color>
+            </palette>
+        </bitmap>
+        <label x="center" y="65" font="Gfx.FONT_SMALL" justification="Gfx.TEXT_JUSTIFY_CENTER" text="@Strings.connectString1" />
+        <label x="center" y="85" font="Gfx.FONT_SMALL" justification="Gfx.TEXT_JUSTIFY_CENTER" text="@Strings.connectString2" />
+        <label x="center" y="105" font="Gfx.FONT_SMALL" justification="Gfx.TEXT_JUSTIFY_CENTER" text="@Strings.connectString3" />
+    </layout>
+    
+    <layout id="Fetching">
+        <label x="center" y="45" font="Gfx.FONT_SMALL" justification="Gfx.TEXT_JUSTIFY_CENTER" text="@Strings.fetchingString1" />
+        <label x="center" y="65" font="Gfx.FONT_SMALL" justification="Gfx.TEXT_JUSTIFY_CENTER" text="@Strings.fetchingString2" />
+        <label x="center" y="85" font="Gfx.FONT_SMALL" justification="Gfx.TEXT_JUSTIFY_CENTER" text="@Strings.fetchingString3" />
+    </layout>
+</layouts>

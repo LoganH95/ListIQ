@@ -1,0 +1,21 @@
+<strings>
+    <string id="AppName">List IQ</string>
+
+    <string id="title">School</string>
+
+    <string id="menu_label_1">Item 1</string>
+    <string id="menu_label_2">Item 2</string>
+    
+    <string id="connectString1">Please connect your</string>
+    <string id="connectString2">phone and open the</string>
+    <string id="connectString3">Connect Mobile App</string>
+    
+    <string id="goToPhone">Open the</string>   
+    
+    <string id="loading"> Loading...</string>
+    <string id="error">Error: </string>
+    
+    <string id="fetchingString1">Please wait while</string>
+    <string id="fetchingString2">we fetch your data</string>
+    <string id="fetchingString3">from Wunderlist.</string>
+</strings>

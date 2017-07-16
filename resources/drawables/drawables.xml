@@ -1,0 +1,6 @@
+<drawables>
+	<bitmap id="LauncherIcon" filename="list.png" />
+	<drawable-list id="Checklist" background="Gfx.COLOR_BLACK">
+   		<shape type="rectangle" x="100" y="50" width="20" height="20" color="Gfx.COLOR_WHITE" />
+	</drawable-list>
+</drawables>
