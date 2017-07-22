@@ -10,12 +10,12 @@ class ListTableViewController extends TableViewController {
 		self.list = list;
 		title = list.getTitle(); 
 		tableView.setSeparatorStyle( TableViewSeparatorStyleTitle );
-		self.communicationController = communicationController; 
+		self.communicationController = communicationController;
+		communicationController.registerDelegate( self );
 		fetchData();
 	}
 	
 	hidden function fetchData() {
-		communicationController.registerDelegate( self );
 		communicationController.retrieveTasksByID( list.getID() );
 	}
 	
@@ -66,4 +66,21 @@ class ListTableViewController extends TableViewController {
 			reloadView();
 		}
 	}
+	
+	//Behavior Delegate
+    
+    function onMenu() {
+        Ui.pushView(new Rez.Menus.list_menu(), new ListMenuDelegate(self), Ui.SLIDE_UP); 
+    	return true;
+    }
+    
+    
+    //List Menu Delegate
+    
+    function cacheList() {
+    	var parentViewController = self.getParentViewController();
+    	if (parentViewController != null) {
+    		parentViewController.cacheList(list);
+    	}
+    }
 }

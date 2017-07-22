@@ -1,0 +1,10 @@
+<resources>
+	<menu id="list_menu">
+    	<menu-item id="saveList">Save List</menu-item>
+	</menu>
+    
+    <menu id="OnOffMenu">
+    	<menu-item id="On">On</menu-item>
+    	<menu-item id="Off">Off</menu-item>
+	</menu>
+</resources>

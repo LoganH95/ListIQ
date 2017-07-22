@@ -9,22 +9,25 @@ class ListManagerTableViewController extends TableViewController {
 	function initialize() {
 		TableViewController.initialize();
 		listManager = new ListManager();
-		title = "List IQ";  
-		
+		communicationController = new WunderlistCommunicationController();
+		communicationController.registerDelegate(self);
+		title = "List IQ";
 	}
 	
 	//View Life Cycle
 	
 	function viewDidLoad() {
-		fetchData();
+		if (listManager.numLists() == 0) {
+			fetchData();
+		} else {
+			listControllers = new [ listManager.numLists() ];
+		}
 	}
 	
 	hidden function fetchData() {
     	var layout = new LayoutView(null, Rez.Layouts.Fetching);
     	Ui.pushView(layout, null, Ui.SLIDE_IMMEDIATE);
     	
-    	communicationController = new WunderlistCommunicationController();
-    	communicationController.registerDelegate(self);
     	communicationController.retrieveLists();
 	}
 	
@@ -70,8 +73,15 @@ class ListManagerTableViewController extends TableViewController {
 		var listController = listControllers[ index ];
 		if ( listController == null ) {
 			listController = new ListTableViewController( listManager.getListAtIndex(index), communicationController );
+			listController.setParentViewController(self);
 			listControllers[ index ] = listController;
 		}
 		Ui.pushView( listController.getView(), listController, Ui.SLIDE_LEFT);
 	}
+	
+	//ListManager Menu Delegate
+    
+    function cacheList(list) {
+    	listManager.addCachedList(list);
+    }
 }
