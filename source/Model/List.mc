@@ -1,6 +1,6 @@
 
 class List {
-	hidden var title, tasks, id;  
+	hidden var title, tasks, id, cached;  
 	
 	//Initialization
 	
@@ -38,5 +38,9 @@ class List {
 	
 	function getSize() {
 		return tasks.size(); 
+	}
+	
+	function clearTasks() {
+		tasks = new [0];
 	}
 }

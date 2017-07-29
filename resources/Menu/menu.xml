@@ -1,10 +1,21 @@
 <resources>
-	<menu id="list_menu">
-    	<menu-item id="saveList">Save List</menu-item>
+	<menu id="list_menu_save">
+    	<menu-item id="cache_list_menu_item">@Strings.cache_list_menu_text</menu-item>
+    	<menu-item id="fetch_list_items_menu_item">@Strings.fetch_list_items_menu_text</menu-item>
 	</menu>
-    
-    <menu id="OnOffMenu">
-    	<menu-item id="On">On</menu-item>
-    	<menu-item id="Off">Off</menu-item>
+	
+	<menu id="list_menu_remove">
+    	<menu-item id="remove_cached_list_menu_item">@Strings.remove_cached_list_menu_text</menu-item>
+    	<menu-item id="fetch_list_items_menu_item">@Strings.fetch_list_items_menu_text</menu-item>
+	</menu>
+	
+	<menu id="list_manager_menu" title="@Strings.list_manager_menu_title">
+    	<menu-item id="fetch_lists_menu_item">@Strings.fetch_lists_menu_text</menu-item>
+    	<menu-item id="clear_cached_lists_menu_item">@Strings.clear_cached_lists_menu_text</menu-item>
+	</menu>
+	
+	<menu id="confirmation_menu" title="@Strings.confirmation_menu_title">
+    	<menu-item id="no_menu_item">@Strings.no_menu_text</menu-item>
+    	<menu-item id="yes_menu_item">@Strings.yes_menu_text</menu-item>
 	</menu>
 </resources>

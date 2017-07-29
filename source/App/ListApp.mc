@@ -12,7 +12,7 @@ class ListApp extends App.AppBase {
     function onStop(state) {
     }
 
-    function getInitialView() { 
+    function getInitialView() {
         var wunderListId = App.getApp().getProperty( "wunderlist_id" );
 		
         if ( !System.getDeviceSettings().phoneConnected ) {

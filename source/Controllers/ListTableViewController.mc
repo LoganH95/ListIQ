@@ -12,10 +12,20 @@ class ListTableViewController extends TableViewController {
 		tableView.setSeparatorStyle( TableViewSeparatorStyleTitle );
 		self.communicationController = communicationController;
 		communicationController.registerDelegate( self );
-		fetchData();
 	}
 	
-	hidden function fetchData() {
+	//View Life Cycle
+	
+	function viewDidLoad() {
+		if (list.getSize() == 0) {
+			fetchListItems();
+		}
+	}
+	
+	//Fetch Data
+	
+	function fetchListItems() {
+		list.clearTasks();
 		communicationController.retrieveTasksByID( list.getID() );
 	}
 	
@@ -70,17 +80,33 @@ class ListTableViewController extends TableViewController {
 	//Behavior Delegate
     
     function onMenu() {
-        Ui.pushView(new Rez.Menus.list_menu(), new ListMenuDelegate(self), Ui.SLIDE_UP); 
+    	var menu = isCachedList() ? new Rez.Menus.list_menu_remove() : new Rez.Menus.list_menu_save();
+    	menu.setTitle(list.getTitle() + " Menu");
+    	Ui.pushView(menu, new ListMenuDelegate(self), Ui.SLIDE_UP);
     	return true;
     }
     
-    
     //List Menu Delegate
-    
+     
     function cacheList() {
     	var parentViewController = self.getParentViewController();
     	if (parentViewController != null) {
     		parentViewController.cacheList(list);
     	}
+    }
+    
+    function removeCachedList() {
+    	var parentViewController = self.getParentViewController();
+    	if (parentViewController != null) {
+    		parentViewController.removeCachedList(list);
+    	}
+    }
+    
+    function isCachedList() {
+    	var parentViewController = self.getParentViewController();
+    	if (parentViewController != null) {
+    		return parentViewController.isCachedList(list);
+    	}
+    	return false;
     }
 }

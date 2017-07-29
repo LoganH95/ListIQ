@@ -1,5 +1,4 @@
 using Toybox.WatchUi as Ui;
-using Toybox.System as Sys;
 
 class ListManagerTableViewController extends TableViewController {
 	hidden var listManager, communicationController, listControllers; 
@@ -18,16 +17,19 @@ class ListManagerTableViewController extends TableViewController {
 	
 	function viewDidLoad() {
 		if (listManager.numLists() == 0) {
-			fetchData();
+			fetchLists();
 		} else {
 			listControllers = new [ listManager.numLists() ];
 		}
 	}
 	
-	hidden function fetchData() {
+	//Fetch Data
+	
+	function fetchLists() {
     	var layout = new LayoutView(null, Rez.Layouts.Fetching);
     	Ui.pushView(layout, null, Ui.SLIDE_IMMEDIATE);
     	
+    	listManager.clearLists();
     	communicationController.retrieveLists();
 	}
 	
@@ -79,9 +81,28 @@ class ListManagerTableViewController extends TableViewController {
 		Ui.pushView( listController.getView(), listController, Ui.SLIDE_LEFT);
 	}
 	
+	//Behavior Delegate
+    
+    function onMenu() {
+    	Ui.pushView(new Rez.Menus.list_manager_menu(), new ListManagerMenuDelegate(self), Ui.SLIDE_UP);
+    	return true;
+    }
+	
 	//ListManager Menu Delegate
     
     function cacheList(list) {
-    	listManager.addCachedList(list);
+    	listManager.cacheList(list);
+    }
+    
+    function removeCachedList(list) {
+    	listManager.removeCachedList(list);
+    }
+    
+    function isCachedList(list) {
+    	return listManager.isCachedList(list);
+    }
+    
+    function clearCachedLists() {
+    	listManager.clearCachedLists();
     }
 }

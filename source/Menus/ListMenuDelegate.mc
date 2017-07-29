@@ -1,5 +1,5 @@
 using Toybox.WatchUi as Ui;
-using Toybox.Application as App;
+using Toybox.Test as Test;
 
 class ListMenuDelegate extends Ui.MenuInputDelegate {
 
@@ -11,63 +11,30 @@ class ListMenuDelegate extends Ui.MenuInputDelegate {
     }
 
     function onMenuItem(item) {
+    	var delegate = getDelegate();
     	switch (item) {
-    		case :saveList:
-    			var delegate = getDelegate();
+    		case :fetch_list_items_menu_item:
+    			if (delegate != null) {
+    				delegate.fetchListItems();
+    			}
+    			break;
+    		case :cache_list_menu_item:
     			if (delegate != null) {
     				delegate.cacheList();
     			}
     			break;
+    		case :remove_cached_list_menu_item:
+    			if (delegate != null) {
+    				delegate.removeCachedList();
+    			}
+    			break;
+    		default:
+    			Test.assertMessage(false, "Missing menu item case");
+    			return;
     	}
     }
     
     function getDelegate() {
     	return delegate.get();
-    }	
-    
-    function notifyDelegateSettingsDidChange() {
-    	getDelegate().settingsDidChange();
     }
-}
-
-class OnOffConfirmationDelegate extends Ui.MenuInputDelegate {
-
-	hidden var delegate;
-
-     function initialize(delegate, property) {
-        MenuInputDelegate.initialize();
-        self.delegate = delegate.weak();
-        self.property = property;
-    }
-
-    function onMenuItem(item) {
-        App.getApp().setProperty("reps", item == :On);
-        getDelegate().notifyDelegateSettingsDidChange();
-    }
-    
-    function getDelegate() {
-    	return delegate.get();
-    }	
-}
-
-class RestConfirmationDelegate extends Ui.MenuInputDelegate {
-
-	hidden var delegate;
-
-    function initialize(delegate) {
-    	MenuInputDelegate.initialize();
-        self.delegate = delegate.weak();
-    }
-
-    function onMenuItem(item) {
-        App.getApp().setProperty("rest", item == :On);
-        if (item == :On) {
-        	 Ui.pushView(new TimePicker(), new RestPickerDelegate(getDelegate()), Ui.SLIDE_IMMEDIATE); 
-        }
-        getDelegate().notifyDelegateSettingsDidChange();
-    }
-    
-    function getDelegate() {
-    	return delegate.get();
-    }	
 }

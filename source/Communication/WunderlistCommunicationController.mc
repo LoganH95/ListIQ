@@ -64,7 +64,7 @@ class WunderlistCommunicationController {
                :method=>Comm.HTTP_REQUEST_METHOD_GET,
                :headers=>{ 
               			 "X-Access-Token"=>wunderlistID,
-              			 "X-Client-ID"=>$.ClientId
+              			 "X-Client-ID"=>$.CLIENT_ID
               			 },
                :responseType=>Comm.HTTP_RESPONSE_CONTENT_TYPE_JSON
             },
@@ -84,7 +84,7 @@ class WunderlistCommunicationController {
                :method=>Comm.HTTP_REQUEST_METHOD_GET,
                :headers=>{ 
               			 "X-Access-Token"=>wunderlistID,
-              			 "X-Client-ID"=>$.ClientId
+              			 "X-Client-ID"=>$.CLIENT_ID
               			 },
                :responseType=>Comm.HTTP_RESPONSE_CONTENT_TYPE_JSON
             }, 
@@ -102,7 +102,7 @@ class WunderlistCommunicationController {
                :method=>Comm.HTTP_REQUEST_METHOD_PUT,
                :headers=>{ 
               			 "X-Access-Token"=>wunderlistID,
-              			 "X-Client-ID"=>$.ClientId,
+              			 "X-Client-ID"=>$.CLIENT_ID,
               			 "Content-Type"=>Comm.REQUEST_CONTENT_TYPE_JSON
               			 },
                :responseType=>Comm.HTTP_RESPONSE_CONTENT_TYPE_JSON
