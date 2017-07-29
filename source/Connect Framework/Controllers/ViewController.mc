@@ -42,12 +42,17 @@ class ViewController extends Ui.BehaviorDelegate {
 	}
 	
 	function setParentViewController(parentViewController) {
-		self.parentViewController = parentViewController; 
+		self.parentViewController = parentViewController.weak(); 
+	}
+	
+	function getParentViewController() {
+		return parentViewController ? parentViewController.get() : null;
 	}
 	
 	//Behavior Delegate
 	
 	function onKey(evt) {
+		var parentViewController = getParentViewController();
 		if (parentViewController == null) {
 			return; 
 		}
@@ -55,6 +60,7 @@ class ViewController extends Ui.BehaviorDelegate {
 	}
 	
 	function onMenu() {
+		var parentViewController = getParentViewController();
 		if (parentViewController == null) {
 			return; 
 		}
@@ -62,6 +68,7 @@ class ViewController extends Ui.BehaviorDelegate {
     }
     
     function onTap(evt) {
+		var parentViewController = getParentViewController();
     	if (parentViewController == null) {
 			return; 
 		}
@@ -69,6 +76,7 @@ class ViewController extends Ui.BehaviorDelegate {
     }
 	
 	function onSwipe(evt) {
+		var parentViewController = getParentViewController();
 		if (parentViewController == null) {
 			return; 
 		}

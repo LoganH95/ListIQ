@@ -1,5 +1,4 @@
 using Toybox.WatchUi as Ui;
-using Toybox.System as Sys;
 
 class ListManagerTableViewController extends TableViewController {
 	hidden var listManager, communicationController, listControllers; 
@@ -9,22 +8,28 @@ class ListManagerTableViewController extends TableViewController {
 	function initialize() {
 		TableViewController.initialize();
 		listManager = new ListManager();
-		title = "List IQ";  
-		
+		communicationController = new WunderlistCommunicationController();
+		communicationController.registerDelegate(self);
+		title = "List IQ";
 	}
 	
 	//View Life Cycle
 	
 	function viewDidLoad() {
-		fetchData();
+		if (listManager.numLists() == 0) {
+			fetchLists();
+		} else {
+			listControllers = new [ listManager.numLists() ];
+		}
 	}
 	
-	hidden function fetchData() {
+	//Fetch Data
+	
+	function fetchLists() {
     	var layout = new LayoutView(null, Rez.Layouts.Fetching);
     	Ui.pushView(layout, null, Ui.SLIDE_IMMEDIATE);
     	
-    	communicationController = new WunderlistCommunicationController();
-    	communicationController.registerDelegate(self);
+    	listManager.clearLists();
     	communicationController.retrieveLists();
 	}
 	
@@ -70,8 +75,34 @@ class ListManagerTableViewController extends TableViewController {
 		var listController = listControllers[ index ];
 		if ( listController == null ) {
 			listController = new ListTableViewController( listManager.getListAtIndex(index), communicationController );
+			listController.setParentViewController(self);
 			listControllers[ index ] = listController;
 		}
 		Ui.pushView( listController.getView(), listController, Ui.SLIDE_LEFT);
 	}
+	
+	//Behavior Delegate
+    
+    function onMenu() {
+    	Ui.pushView(new Rez.Menus.list_manager_menu(), new ListManagerMenuDelegate(self), Ui.SLIDE_UP);
+    	return true;
+    }
+	
+	//ListManager Menu Delegate
+    
+    function cacheList(list) {
+    	listManager.cacheList(list);
+    }
+    
+    function removeCachedList(list) {
+    	listManager.removeCachedList(list);
+    }
+    
+    function isCachedList(list) {
+    	return listManager.isCachedList(list);
+    }
+    
+    function clearCachedLists() {
+    	listManager.clearCachedLists();
+    }
 }

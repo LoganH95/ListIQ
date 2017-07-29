@@ -8,8 +8,8 @@
                 <color>00AAFF</color>
             </palette>
         </bitmap>    
-        <label x="center" y="65" font="Gfx.FONT_SMALL" justification="Gfx.TEXT_JUSTIFY_CENTER" text="@Strings.goToPhone" />
-        <label x="center" y="85" font="Gfx.FONT_SMALL" justification="Gfx.TEXT_JUSTIFY_CENTER" text="@Strings.connectString3" />
+        <label x="center" y="65" font="Gfx.FONT_SMALL" justification="Gfx.TEXT_JUSTIFY_CENTER" text="@Strings.open_layout_text" />
+        <label x="center" y="85" font="Gfx.FONT_SMALL" justification="Gfx.TEXT_JUSTIFY_CENTER" text="@Strings.connect_3_layout_text" />
     </layout>
     
     <layout id="Gcm">
@@ -21,14 +21,14 @@
                 <color>00AAFF</color>
             </palette>
         </bitmap>
-        <label x="center" y="65" font="Gfx.FONT_SMALL" justification="Gfx.TEXT_JUSTIFY_CENTER" text="@Strings.connectString1" />
-        <label x="center" y="85" font="Gfx.FONT_SMALL" justification="Gfx.TEXT_JUSTIFY_CENTER" text="@Strings.connectString2" />
-        <label x="center" y="105" font="Gfx.FONT_SMALL" justification="Gfx.TEXT_JUSTIFY_CENTER" text="@Strings.connectString3" />
+        <label x="center" y="65" font="Gfx.FONT_SMALL"  justification="Gfx.TEXT_JUSTIFY_CENTER" text="@Strings.connect_1_layout_text" />
+        <label x="center" y="85" font="Gfx.FONT_SMALL"  justification="Gfx.TEXT_JUSTIFY_CENTER" text="@Strings.connect_2_layout_text" />
+        <label x="center" y="105" font="Gfx.FONT_SMALL" justification="Gfx.TEXT_JUSTIFY_CENTER" text="@Strings.connect_3_layout_text" />
     </layout>
     
     <layout id="Fetching">
-        <label x="center" y="45" font="Gfx.FONT_SMALL" justification="Gfx.TEXT_JUSTIFY_CENTER" text="@Strings.fetchingString1" />
-        <label x="center" y="65" font="Gfx.FONT_SMALL" justification="Gfx.TEXT_JUSTIFY_CENTER" text="@Strings.fetchingString2" />
-        <label x="center" y="85" font="Gfx.FONT_SMALL" justification="Gfx.TEXT_JUSTIFY_CENTER" text="@Strings.fetchingString3" />
+        <label x="center" y="45" font="Gfx.FONT_SMALL" justification="Gfx.TEXT_JUSTIFY_CENTER" text="@Strings.fetching_1_layout_text" />
+        <label x="center" y="65" font="Gfx.FONT_SMALL" justification="Gfx.TEXT_JUSTIFY_CENTER" text="@Strings.fetching_2_layout_text" />
+        <label x="center" y="85" font="Gfx.FONT_SMALL" justification="Gfx.TEXT_JUSTIFY_CENTER" text="@Strings.fetching_3_layout_text" />
     </layout>
 </layouts>

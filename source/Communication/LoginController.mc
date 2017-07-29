@@ -47,8 +47,8 @@ class LoginController
             "https://www.wunderlist.com/oauth/access_token",
             // Post parameters
             {
-            	"client_id"=>$.ClientId,
-                "client_secret"=>$.ClientSecret,
+            	"client_id"=>$.CLIENT_ID,
+                "client_secret"=>$.CLIENT_SECRET,
                 "code"=>accessCode
             },
             // Options to the request
@@ -83,12 +83,12 @@ class LoginController
             "https://www.wunderlist.com/oauth/authorize",
             // POST parameters
             {
-                "client_id"=>$.ClientId,
-                "redirect_uri"=>$.RedirectUri,
+                "client_id"=>$.CLIENT_ID,
+                "redirect_uri"=>$.REDIRECT_URL,
                 "state"=>"Random"
             },
             // Redirect URL
-            $.RedirectUri,
+            $.REDIRECT_URL,
             // Response type
             Comm.OAUTH_RESULT_TYPE_URL,
             // Value to look for
@@ -106,7 +106,7 @@ class LoginControllerDelegate {
 
     // Handle a error from the server
     function handleError(code) {
-        var msg = WatchUi.loadResource( Rez.Strings.error );
+        var msg = WatchUi.loadResource( Rez.Strings.error_text );
         msg += code;
         var viewController = new ErrorViewController(msg);
         Ui.switchToView(viewController.getView(), viewController, Ui.SLIDE_IMMEDIATE);
