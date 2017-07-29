@@ -5,10 +5,11 @@ using Toybox.System as Sys;
 using Toybox.Test as Test;
 
 class WunderlistCommunicationController {
+
 	const validHTTPResponse = 200; 
 	var wunderlistID;
 	var delegates;
-	
+
 	//Initialization
 
 	function initialize() {
@@ -34,19 +35,28 @@ class WunderlistCommunicationController {
     
     function alertDelegatesDidRecieveLists(lists) {
     	for ( var i = 0; i < numDelegates(); i++ ) {
-    		getDelegateAtIndex(i).didRecieveLists(lists);
+    		var delegate = getDelegateAtIndex(i);
+    		if ( delegate != null ) {
+    			delegate.didRecieveLists(lists);
+    		}
     	}
     }
     
     function alertDelegatesDidRecieveTasks(tasks, listID) {
     	for ( var i = 0; i < numDelegates(); i++ ) {
-    		getDelegateAtIndex(i).didRecieveTasks(tasks, listID);
+    		var delegate = getDelegateAtIndex(i);
+    		if ( delegate != null ) {
+    			delegate.didRecieveTasks(tasks, listID);
+    		}
     	}
     }
     
     function alertDelegatesDidRecieveError(error) {
     	for ( var i = 0; i < numDelegates(); i++ ) {
-    		getDelegateAtIndex(i).didRecieveError(error);
+    		var delegate = getDelegateAtIndex(i);
+    		if ( delegate != null ) {
+    			delegate.didRecieveError(error);
+    		}
     	}
     }
     
@@ -115,7 +125,7 @@ class WunderlistCommunicationController {
     
     function retieveListsCallback(responseCode, data) {
     	if (responseCode != validHTTPResponse || data == null) {
-    		Test.assertMessage( false, "WunderlistCommunicationController Error 120: " + data );
+    		Test.assertMessage( false, "WunderlistCommunicationController Error: " + data );
     		alertDelegatesDidRecieveError(responseCode);
     		return;
     	}
@@ -126,7 +136,7 @@ class WunderlistCommunicationController {
     
     function retieveListTasksCallback(responseCode, data) {
     	if ( responseCode != validHTTPResponse || data == null ) {
-    		Test.assertMessage( false, "WunderlistCommunicationController Error 135: " + data );
+    		Test.assertMessage( false, "WunderlistCommunicationController Error: " + data );
     		alertDelegatesDidRecieveError(responseCode);
     		return;
     	} else if ( data.size() == 0 ) {
@@ -140,7 +150,7 @@ class WunderlistCommunicationController {
     
     function completeTaskCallback(responseCode, data) {
     	if ( data == null ) {
-    		Test.assertMessage( false, "WunderlistCommunicationController Error 149: " + data );
+    		Test.assertMessage( false, "WunderlistCommunicationController Error: " + data );
     	}
     }
     

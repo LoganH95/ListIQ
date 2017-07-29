@@ -1,5 +1,6 @@
 
 class Task {
+
 	var title, id, dueDate, revision; 
 
 	//Initialization

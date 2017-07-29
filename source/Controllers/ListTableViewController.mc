@@ -17,7 +17,7 @@ class ListTableViewController extends TableViewController {
 	//View Life Cycle
 	
 	function viewDidLoad() {
-		if (list.getSize() == 0) {
+		if ( list.getSize() == 0 ) {
 			fetchListItems();
 		}
 	}
@@ -90,21 +90,21 @@ class ListTableViewController extends TableViewController {
      
     function cacheList() {
     	var parentViewController = self.getParentViewController();
-    	if (parentViewController != null) {
+    	if ( parentViewController != null ) {
     		parentViewController.cacheList(list);
     	}
     }
     
     function removeCachedList() {
     	var parentViewController = self.getParentViewController();
-    	if (parentViewController != null) {
+    	if ( parentViewController != null ) {
     		parentViewController.removeCachedList(list);
     	}
     }
     
     function isCachedList() {
     	var parentViewController = self.getParentViewController();
-    	if (parentViewController != null) {
+    	if ( parentViewController != null ) {
     		return parentViewController.isCachedList(list);
     	}
     	return false;

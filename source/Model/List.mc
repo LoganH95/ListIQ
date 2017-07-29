@@ -1,5 +1,6 @@
 
 class List {
+
 	hidden var title, tasks, id, cached;  
 	
 	//Initialization

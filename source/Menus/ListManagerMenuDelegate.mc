@@ -12,15 +12,15 @@ class ListManagerMenuDelegate extends Ui.MenuInputDelegate {
 
     function onMenuItem(item) {
     	var delegate = getDelegate();
-    	switch (item) {
+    	switch ( item ) {
     		case :fetch_lists_menu_item:
-    			if (delegate != null) {
+    			if ( delegate != null ) {
     				Ui.popView(Ui.SLIDE_IMMEDIATE);
     				delegate.fetchLists();
     			}
     			break;
     		case :clear_cached_lists_menu_item:
-    			if (delegate != null) {
+    			if ( delegate != null ) {
     				Ui.pushView(new Rez.Menus.confirmation_menu(), new ConfirmationDelegate(delegate), Ui.SLIDE_IMMEDIATE);
     			}
     			break;

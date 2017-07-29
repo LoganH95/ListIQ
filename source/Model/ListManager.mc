@@ -4,6 +4,7 @@ using Toybox.Application as App;
 using Toybox.Test as Test;
 
 class ListManager {
+
 	const MAX_CACHED_LISTS = 4;
 	hidden var lists;
 	hidden var numCachedLists;
@@ -60,8 +61,7 @@ class ListManager {
     }
     
     function cacheList(list) {
-    	if (numCachedLists >= MAX_CACHED_LISTS) {
-    		Test.assertMessage( false, "ListManager: Max number of cached lists");
+    	if ( numCachedLists >= MAX_CACHED_LISTS ) {
     		return;
     	}
     	App.AppBase.setProperty("listID_" + numCachedLists, list.getID() );
@@ -70,8 +70,7 @@ class ListManager {
     }
     
     function removeCachedList(list) {
-    	var index = indexOfCachedList(list);
-    	for (; index < numCachedLists - 1; index++) {
+    	for ( var index = indexOfCachedList(list); index < numCachedLists - 1; index++ ) {
     		 cachedListIds[index] = cachedListIds[index + 1];
     		 App.AppBase.setProperty("listID_" + index, cachedListIds[index]);
     		 App.AppBase.setProperty("listTitle_" + index,  App.AppBase.getProperty("listTitle_" + (index + 1)));
@@ -80,7 +79,7 @@ class ListManager {
     }
     
     function clearCachedLists() {
-    	while (numCachedLists > 0) {
+    	while ( numCachedLists > 0 ) {
     		removeLastList();
     	}
     }
@@ -93,6 +92,7 @@ class ListManager {
     
     hidden function addCachedList(list) {
     	if ( numCachedLists >= MAX_CACHED_LISTS) {
+    		Test.assertMessage( false, "ListManager: Max number of cached lists");
     		return;
     	}
     	cachedListIds[numCachedLists] = list.getID();
@@ -102,7 +102,7 @@ class ListManager {
     hidden function retrieveCachedLists() {
     	for ( var i = 0; i < MAX_CACHED_LISTS; i++) {
     		var listID = App.AppBase.getProperty("listID_" + i);
-    		if (listID == null) {
+    		if ( listID == null ) {
     			return;
     		}
     		var list = new List(App.AppBase.getProperty("listTitle_" + i), listID);
@@ -113,7 +113,7 @@ class ListManager {
     
     hidden function indexOfCachedList(list) {
     	for ( var index = 0; index < numCachedLists; index++) {
-    		if (list.getID() == cachedListIds[index]) {
+    		if ( list.getID() == cachedListIds[index] ) {
     			return index;
     		}
     	}

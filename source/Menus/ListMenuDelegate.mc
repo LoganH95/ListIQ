@@ -12,19 +12,19 @@ class ListMenuDelegate extends Ui.MenuInputDelegate {
 
     function onMenuItem(item) {
     	var delegate = getDelegate();
-    	switch (item) {
+    	switch ( item ) {
     		case :fetch_list_items_menu_item:
-    			if (delegate != null) {
+    			if ( delegate != null ) {
     				delegate.fetchListItems();
     			}
     			break;
     		case :cache_list_menu_item:
-    			if (delegate != null) {
+    			if ( delegate != null ) {
     				delegate.cacheList();
     			}
     			break;
     		case :remove_cached_list_menu_item:
-    			if (delegate != null) {
+    			if ( delegate != null ) {
     				delegate.removeCachedList();
     			}
     			break;
