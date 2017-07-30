@@ -1,7 +1,10 @@
 
 class List {
 
-	hidden var title, tasks, id, cached;  
+	hidden var title;
+	hidden var tasks;
+	hidden var id;
+	hidden var cached;  
 	
 	//Initialization
 	
