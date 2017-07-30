@@ -61,64 +61,64 @@ class WunderlistCommunicationController {
     }
 
     //Communication Methods
-    
+
     function retrieveLists() {
-    	Sys.println( "WunderlistID: " +  wunderlistID );
-    	Sys.println( "Here: retrieveLists" );
     	Comm.makeWebRequest(
-            // URL
-            "https://a.wunderlist.com/api/v1/lists",
-            null,
-            // Options to the request
-            {
-               :method=>Comm.HTTP_REQUEST_METHOD_GET,
-               :headers=>{ 
-              			  "X-Access-Token"=>wunderlistID,
-              			  "X-Client-ID"=>$.CLIENT_ID
-              			 },
-               :responseType=>Comm.HTTP_RESPONSE_CONTENT_TYPE_JSON
-            },
-            // Callback to handle response
-            method(:retieveListsCallback)
-        );
+				            "https://a.wunderlist.com/api/v1/lists",
+				            null,
+				            {
+				             :method=>Comm.HTTP_REQUEST_METHOD_GET,
+				             :headers=>{
+								   "X-Access-Token"=>wunderlistID,
+								   "X-Client-ID"=>$.CLIENT_ID
+							   },
+				             :responseType=>Comm.HTTP_RESPONSE_CONTENT_TYPE_JSON
+				            },
+				            method(:retieveListsCallback)
+				           );
     }
 
     function retrieveTasksByID(listID) {
-    	Sys.println( "Here: getListByID" );
     	Comm.makeWebRequest(
-    		"https://a.wunderlist.com/api/v1/tasks", 
-    		{
-    			"list_id"=>listID
-    		}, 
-    		{
-               :method=>Comm.HTTP_REQUEST_METHOD_GET,
-               :headers=>{ 
-              			 "X-Access-Token"=>wunderlistID,
-              			 "X-Client-ID"=>$.CLIENT_ID
-              			 },
-               :responseType=>Comm.HTTP_RESPONSE_CONTENT_TYPE_JSON
-            }, 
-    		method(:retieveListTasksCallback)
-    	);
+						"https://a.wunderlist.com/api/v1/tasks",
+						{
+							"list_id"=>listID
+						},
+						{
+				             :method=>Comm.HTTP_REQUEST_METHOD_GET,
+				             :headers=>{
+							       "X-Access-Token"=>wunderlistID,
+								   "X-Client-ID"=>$.CLIENT_ID
+							   },
+				             :responseType=>Comm.HTTP_RESPONSE_CONTENT_TYPE_JSON
+				            },
+						method(:retieveListTasksCallback)
+					   );
     }
 
     function completeTask(task) {
+	var url = "https://a.wunderlist.com/api/v1/tasks/" + task.id;
+	var body = {
+			    "revision"=>task.revision,
+			    "completed"=>true
+			   };
+		var options = {
+		               :method=>Comm.HTTP_REQUEST_METHOD_PUT,
+		               :headers=>{
+							"X-Access-Token"=>wunderlistID,
+							"X-Client-ID"=>$.CLIENT_ID,
+							"Content-Type"=>Comm.REQUEST_CONTENT_TYPE_JSON
+					     },
+		               :responseType=>Comm.HTTP_RESPONSE_CONTENT_TYPE_JSON
+				      };
+	    var callback = method(:completeTaskCallback);
+
     	Comm.makeWebRequest(
-    		"https://a.wunderlist.com/api/v1/tasks/" + intString(task.id), 
-    		{
-    			"revision"=>task.revision
-    		}, 
-    		{
-               :method=>Comm.HTTP_REQUEST_METHOD_PUT,
-               :headers=>{
-              			 "X-Access-Token"=>wunderlistID,
-              			 "X-Client-ID"=>$.CLIENT_ID,
-              			 "Content-Type"=>Comm.REQUEST_CONTENT_TYPE_JSON
-              			 },
-               :responseType=>Comm.HTTP_RESPONSE_CONTENT_TYPE_JSON
-            },
-    		method(:completeTaskCallback)
-    	);
+						url,
+						body,
+						options,
+						callback
+					  );
     }
 
     //Call Backs
@@ -143,31 +143,16 @@ class WunderlistCommunicationController {
     		alertDelegatesDidRecieveTasks( null, null );
     		return;
     	}
-    	
+
     	var tasks = createTasksFromData( data );
     	alertDelegatesDidRecieveTasks( tasks, data[0].get("list_id") );
     }
-    
+
     function completeTaskCallback(responseCode, data) {
-    	if ( data == null ) {
-    		Test.assertMessage( false, "WunderlistCommunicationController Error: " + data );
-    	}
+	Test.assertMessage( validHTTPResponse == responseCode, "WunderlistCommunicationController Error: " + data );
     }
 
     //Private Functions
-
-    hidden function intString(int) {
-    	var string = int + ""; 
-    	var intString = "";
-    	for ( var i = 0; i < string.length(); i++ ) {
-    		var subString = string.substring( i, i + 1 );
-    		if ( subString.equals(".") ) {
-    			return intString;
-    		}
-    		intString += subString;
-    	}
-    	return intString;
-    }
 
     hidden function createListsFromData(data) {
     	var lists = new [0];
