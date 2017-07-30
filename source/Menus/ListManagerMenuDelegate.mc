@@ -4,7 +4,7 @@ using Toybox.Test as Test;
 class ListManagerMenuDelegate extends Ui.MenuInputDelegate {
 
 	hidden var delegate;
-	
+
 	function initialize(delegate) {
         MenuInputDelegate.initialize();
         self.delegate = delegate.weak();
@@ -29,7 +29,7 @@ class ListManagerMenuDelegate extends Ui.MenuInputDelegate {
     			return;
     	}
     }
-    
+
     function getDelegate() {
     	return delegate.get();
     }
@@ -39,8 +39,8 @@ class ConfirmationDelegate extends Ui.MenuInputDelegate {
 
 	hidden var delegate;
 
-     function initialize(delegate) {
-        MenuInputDelegate.initialize();
+    function initialize(delegate) {
+    	MenuInputDelegate.initialize();
         self.delegate = delegate.weak();
     }
 
@@ -52,8 +52,8 @@ class ConfirmationDelegate extends Ui.MenuInputDelegate {
 			}
         }
     }
-    
+
     function getDelegate() {
     	return delegate.get();
-    }	
+    }
 }

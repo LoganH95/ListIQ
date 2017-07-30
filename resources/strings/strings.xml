@@ -1,8 +1,7 @@
 <strings>
     <string id="AppName">List IQ</string>
     
-    <string id="error_text">Error: </string>
-    
+    <!--Layout Text-->
     <string id="connect_1_layout_text">Please connect your</string>
     <string id="connect_2_layout_text">phone and open the</string>
     <string id="connect_3_layout_text">Connect Mobile App</string>
@@ -13,15 +12,20 @@
     <string id="fetching_2_layout_text">we fetch your data</string>
     <string id="fetching_3_layout_text">from Wunderlist.</string>
    
+   <!--Menu titles-->
     <string id="list_manager_menu_title">List IQ Menu</string>
     <string id="confirmation_menu_title">List IQ Menu</string>
     
+    <!--List menu text-->
     <string id="cache_list_menu_text">Cache List</string>
     <string id="remove_cached_list_menu_text">Remove Cache List</string>
     <string id="fetch_list_items_menu_text">Fetch List Items</string>
+    
+    <!--List Manager menu Text-->
     <string id="fetch_lists_menu_text">Fetch Lists</string>
     <string id="clear_cached_lists_menu_text">Clear Cached Lists</string>
     
+    <!--Confirmation Menu Text-->
     <string id="yes_menu_text">Yes</string>
     <string id="no_menu_text">No</string>
 </strings>
