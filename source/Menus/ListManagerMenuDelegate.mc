@@ -21,7 +21,8 @@ class ListManagerMenuDelegate extends Ui.MenuInputDelegate {
     			break;
     		case :clear_cached_lists_menu_item:
     			if ( delegate != null ) {
-    				Ui.pushView(new Rez.Menus.confirmation_menu(), new ConfirmationDelegate(delegate), Ui.SLIDE_IMMEDIATE);
+    				Ui.pushView(new Ui.Confirmation("Clear Cached Lists?"), new ClearCachedListsConfirmationDelegate(delegate), Ui.SLIDE_IMMEDIATE);
+    				//Ui.pushView(new Rez.Menus.confirmation_menu(), new ClearCachedListsConfirmationDelegate(delegate), Ui.SLIDE_IMMEDIATE);
     			}
     			break;
     		default:
@@ -35,22 +36,22 @@ class ListManagerMenuDelegate extends Ui.MenuInputDelegate {
     }
 }
 
-class ConfirmationDelegate extends Ui.MenuInputDelegate {
+class ClearCachedListsConfirmationDelegate extends Ui.ConfirmationDelegate {
 
 	hidden var delegate;
 
     function initialize(delegate) {
-    	MenuInputDelegate.initialize();
+    	ConfirmationDelegate.initialize();
         self.delegate = delegate.weak();
     }
-
-    function onMenuItem(item) {
-        if ( item == :yes_menu_item ) {
-        	var delegate = getDelegate();
+    
+	function onResponse(response) {
+		if (response == Ui.CONFIRM_YES) {
+			var delegate = getDelegate();
         	if ( delegate != null ) {
 				delegate.clearCachedLists();
 			}
-        }
+		}
     }
 
     function getDelegate() {
