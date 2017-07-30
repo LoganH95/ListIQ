@@ -22,7 +22,6 @@ class ListManagerMenuDelegate extends Ui.MenuInputDelegate {
     		case :clear_cached_lists_menu_item:
     			if ( delegate != null ) {
     				Ui.pushView(new Ui.Confirmation("Clear Cached Lists?"), new ClearCachedListsConfirmationDelegate(delegate), Ui.SLIDE_IMMEDIATE);
-    				//Ui.pushView(new Rez.Menus.confirmation_menu(), new ClearCachedListsConfirmationDelegate(delegate), Ui.SLIDE_IMMEDIATE);
     			}
     			break;
     		default:
