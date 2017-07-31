@@ -100,6 +100,6 @@ class List {
 			}
 		}
 
-		return charArray1.size() <= charArray2.size();
+		return charArray1.size() > charArray2.size();
 	}
 }
