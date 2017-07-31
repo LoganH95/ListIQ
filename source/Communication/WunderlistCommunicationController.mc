@@ -97,11 +97,11 @@ class WunderlistCommunicationController {
     }
 
     function completeTask(task) {
-	var url = "https://a.wunderlist.com/api/v1/tasks/" + task.id;
-	var body = {
-			    "revision"=>task.revision,
-			    "completed"=>true
-			   };
+		var url = "https://a.wunderlist.com/api/v1/tasks/" + task.id;
+		var body = {
+			    	"revision"=>task.revision,
+			    	"completed"=>true
+			   	   };
 		var options = {
 		               :method=>Comm.HTTP_REQUEST_METHOD_PUT,
 		               :headers=>{
@@ -114,11 +114,11 @@ class WunderlistCommunicationController {
 	    var callback = method(:completeTaskCallback);
 
     	Comm.makeWebRequest(
-						url,
-						body,
-						options,
-						callback
-					  );
+							url,
+							body,
+							options,
+							callback
+					  	   );
     }
 
     //Call Backs
@@ -149,7 +149,7 @@ class WunderlistCommunicationController {
     }
 
     function completeTaskCallback(responseCode, data) {
-	Test.assertMessage( validHTTPResponse == responseCode, "WunderlistCommunicationController Error: " + data );
+    	Test.assertMessage( validHTTPResponse == responseCode, "WunderlistCommunicationController Error: " + data );
     }
 
     //Private Functions
